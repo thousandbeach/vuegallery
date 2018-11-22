@@ -83,7 +83,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
     // split vendor js into its own file
-    /*藤原コメントアウト new webpack.optimize.CommonsChunkPlugin({
+    new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks (module) {
         // any required modules inside node_modules are extracted to vendor
@@ -95,22 +95,22 @@ const webpackConfig = merge(baseWebpackConfig, {
           ) === 0
         )
       }
-    }), 藤原コメントアウト */
+    }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
-    //藤原コメントアウト new webpack.optimize.CommonsChunkPlugin({
-    //藤原コメントアウト  name: 'manifest',
-    //藤原コメントアウト  minChunks: Infinity
-    //藤原コメントアウト }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity
+    }),
     // This instance extracts shared chunks from code splitted chunks and bundles them
     // in a separate chunk, similar to the vendor chunk
     // see: https://webpack.js.org/plugins/commons-chunk-plugin/#extra-async-commons-chunk
-    //藤原コメントアウト new webpack.optimize.CommonsChunkPlugin({
-    //藤原コメントアウト  name: 'app',
-    //藤原コメントアウト  async: 'vendor-async',
-    //藤原コメントアウト  children: true,
-    //藤原コメントアウト  minChunks: 3
-    //藤原コメントアウト}),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      async: 'vendor-async',
+      children: true,
+      minChunks: 3
+    }),
 
     // copy custom static assets
     new CopyWebpackPlugin([
